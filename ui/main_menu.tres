@@ -1,0 +1,84 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://bcafhnmnjj468"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_7envr"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ju4va"]
+parameter_name = "SCREEN_TEXTURE"
+texture_filter = 4
+texture_source = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_rqv4e"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ytsel"]
+parameter_name = "blur"
+hint = 1
+max = 2.5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_nd2lk"]
+parameter_name = "brightness"
+hint = 1
+
+[sub_resource type="Cubemap" id="Cubemap_urhx3"]
+
+[sub_resource type="VisualShaderNodeCubemap" id="VisualShaderNodeCubemap_ul7kq"]
+cube_map = SubResource("Cubemap_urhx3")
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float brightness : hint_range(0, 1);
+uniform float blur : hint_range(0, 2.5);
+uniform sampler2D SCREEN_TEXTURE : filter_linear_mipmap, hint_screen_texture;
+uniform samplerCube cube_frg_8;
+
+
+
+void fragment() {
+// FloatParameter:5
+	float n_out5p0 = brightness;
+
+
+// Input:10
+	vec2 n_out10p0 = SCREEN_UV;
+
+
+// FloatParameter:4
+	float n_out4p0 = blur;
+
+
+	vec4 n_out8p0;
+// Cubemap:8
+	n_out8p0 = textureLod(cube_frg_8, vec3(n_out10p0, 0.0), n_out4p0);
+
+
+// VectorOp:16
+	vec4 n_out16p0 = vec4(n_out5p0) * n_out8p0;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out16p0.xyz);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(2260, 100)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_ytsel")
+nodes/fragment/4/position = Vector2(60, 0)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatParameter_nd2lk")
+nodes/fragment/5/position = Vector2(860, 320)
+nodes/fragment/8/node = SubResource("VisualShaderNodeCubemap_ul7kq")
+nodes/fragment/8/position = Vector2(940, 0)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_7envr")
+nodes/fragment/10/position = Vector2(540, 40)
+nodes/fragment/15/node = SubResource("VisualShaderNodeTexture2DParameter_ju4va")
+nodes/fragment/15/position = Vector2(340, 220)
+nodes/fragment/16/node = SubResource("VisualShaderNodeVectorOp_rqv4e")
+nodes/fragment/16/position = Vector2(2040, 40)
+nodes/fragment/connections = PackedInt32Array(4, 0, 8, 1, 10, 0, 8, 0, 15, 0, 8, 2, 16, 0, 0, 0, 5, 0, 16, 0, 8, 0, 16, 1)

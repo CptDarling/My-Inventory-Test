@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bymydcb00uv1u"]
+
+[ext_resource type="PackedScene" uid="uid://42b6g64sqsfo" path="res://scenes/world.tscn" id="1_frg8l"]
+[ext_resource type="PackedScene" uid="uid://dbgcn62jkra0e" path="res://player/player.tscn" id="2_6gde3"]
+[ext_resource type="PackedScene" uid="uid://be70bv2ilur7o" path="res://ui/main_menu.tscn" id="3_lfuee"]
+
+[node name="Main" type="Node3D"]
+
+[node name="World" parent="." instance=ExtResource("1_frg8l")]
+
+[node name="Player" parent="." instance=ExtResource("2_6gde3")]
+
+[node name="MainMenu" parent="." instance=ExtResource("3_lfuee")]
+visible = false
