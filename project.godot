@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 OptionsManager="*res://game/managers/options_manager.tscn"
 GameManager="*res://game/managers/game_manager.tscn"
+Panku="*res://addons/panku_console/console.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
 
 [input]
 
