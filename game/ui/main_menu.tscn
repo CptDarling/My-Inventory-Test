@@ -1,16 +1,16 @@
 [gd_scene load_steps=18 format=3 uid="uid://be70bv2ilur7o"]
 
-[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_iucwi"]
-[ext_resource type="Shader" path="res://shaders/blur_shader.gdshader" id="1_sbe6j"]
-[ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://shaders/main_menu.tres" id="3_o6fgx"]
+[ext_resource type="Shader" path="res://game/shaders/blur_shader.gdshader" id="1_4ijyl"]
+[ext_resource type="Script" path="res://game/ui/main_menu.gd" id="2_takce"]
+[ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://game/shaders/main_menu.tres" id="3_hxabb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iop5w"]
-shader = ExtResource("1_sbe6j")
+shader = ExtResource("1_4ijyl")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xe8xh"]
-shader = ExtResource("3_o6fgx")
+shader = ExtResource("3_hxabb")
 shader_parameter/brightness = null
 shader_parameter/blur = 0.0
 
@@ -231,7 +231,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.509804)
-script = ExtResource("1_iucwi")
+script = ExtResource("2_takce")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)

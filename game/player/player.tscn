@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbgcn62jkra0e"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_bvhs2"]
+[ext_resource type="Script" path="res://game/player/player.gd" id="1_e6obp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oj8vp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qjrf0"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_bvhs2")
+script = ExtResource("1_e6obp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

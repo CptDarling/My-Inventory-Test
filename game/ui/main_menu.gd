@@ -11,7 +11,6 @@ signal options_requested
 func _ready() -> void:
 	quit_button.pressed.connect(get_tree().quit)
 	resume_button.pressed.connect(unpause)
-#	OptionsManager.OptionsMenu.visibility_changed.connect(_options_manager_visibility_changed)
 
 
 func unpause() -> void:

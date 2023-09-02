@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="My Inventory Test"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://game/scenes/main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-OptionsManager="*res://managers/options_manager.tscn"
-GameManager="*res://managers/game_manager.tscn"
+OptionsManager="*res://game/managers/options_manager.tscn"
+GameManager="*res://game/managers/game_manager.tscn"
 
 [input]
 

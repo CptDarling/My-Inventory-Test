@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cciskcytidld0"]
 
-[ext_resource type="Script" path="res://managers/options_manager.gd" id="1_0thf3"]
-[ext_resource type="PackedScene" uid="uid://ndcri0g1s6e8" path="res://ui/options_menu.tscn" id="2_5rl8o"]
+[ext_resource type="Script" path="res://game/managers/options_manager.gd" id="1_0thf3"]
+[ext_resource type="PackedScene" uid="uid://ndcri0g1s6e8" path="res://game/ui/options_menu.tscn" id="2_5rl8o"]
 
 [node name="OptionsManager" type="Node"]
 script = ExtResource("1_0thf3")

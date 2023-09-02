@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bymydcb00uv1u"]
+
+[ext_resource type="Script" path="res://game/scenes/main.gd" id="1_7po14"]
+[ext_resource type="PackedScene" uid="uid://42b6g64sqsfo" path="res://game/scenes/world.tscn" id="2_vbnu1"]
+[ext_resource type="PackedScene" uid="uid://dbgcn62jkra0e" path="res://game/player/player.tscn" id="3_g843c"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_7po14")
+
+[node name="World" parent="." instance=ExtResource("2_vbnu1")]
+
+[node name="Player" parent="." instance=ExtResource("3_g843c")]
+unique_name_in_owner = true
+
+[connection signal="reset_player_transform" from="Player" to="." method="_on_player_reset_player_transform"]
