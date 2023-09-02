@@ -1,10 +1,8 @@
 #class_name OptionsManager
-extends ColorRect
+extends Node
 
 @onready var user_prefs: UserPreferences
-
-@onready var toggle_invert_y: CheckButton = %ToggleInvertY
-@onready var back_button: Button = %BackButton
+@onready var options_menu: ColorRect = %OptionsMenu
 
 @export var mouse_invert_y: bool = false:
 	get:
@@ -16,16 +14,14 @@ extends ColorRect
 		user_prefs.mouse_invert_y = value
 		user_prefs.save()
 
+
 func _ready() -> void:
 	user_prefs = UserPreferences.load_or_create()
-	toggle_invert_y.set_pressed_no_signal(mouse_invert_y)
-	back_button.pressed.connect(hide)
-	hide()
 
 
-func _on_invert_y_toggled(button_pressed: bool) -> void:
-	mouse_invert_y = button_pressed
+func show() -> void:
+	options_menu.show()
 
 
-func _on_back_button_pressed() -> void:
-	hide()
+func _on_options_menu_options_menu_closed() -> void:
+	GameManager.show_main_menu()

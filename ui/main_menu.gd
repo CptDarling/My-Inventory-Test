@@ -6,10 +6,12 @@ class_name MainMenu extends ColorRect
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
+signal options_requested
+
 func _ready() -> void:
 	quit_button.pressed.connect(get_tree().quit)
 	resume_button.pressed.connect(unpause)
-	OptionsManager.visibility_changed.connect(_options_manager_visibility_changed)
+#	OptionsManager.OptionsMenu.visibility_changed.connect(_options_manager_visibility_changed)
 
 
 func unpause() -> void:
@@ -25,7 +27,7 @@ func pause() -> void:
 
 
 func _on_options_button_pressed() -> void:
-	OptionsManager.show()
+	options_requested.emit()
 	hide()
 
 
