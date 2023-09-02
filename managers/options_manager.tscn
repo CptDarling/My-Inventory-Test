@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://managers/options_manager.gd" id="1_0thf3"]
 [ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://ui/main_menu.tres" id="1_cp37v"]
-[ext_resource type="Shader" path="res://ui/main_menu.gdshader" id="1_s5fut"]
+[ext_resource type="Shader" path="res://ui/blur_shader.gdshader" id="1_nd4tn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ybj22"]
-shader = ExtResource("1_s5fut")
+shader = ExtResource("1_nd4tn")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 0.9
 

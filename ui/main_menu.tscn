@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://be70bv2ilur7o"]
 
-[ext_resource type="Shader" path="res://ui/main_menu.gdshader" id="1_deahn"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_iucwi"]
 [ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://ui/main_menu.tres" id="1_ru62n"]
+[ext_resource type="Shader" path="res://ui/blur_shader.gdshader" id="1_sbe6j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iop5w"]
-shader = ExtResource("1_deahn")
+shader = ExtResource("1_sbe6j")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 
