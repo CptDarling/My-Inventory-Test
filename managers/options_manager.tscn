@@ -1,7 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cciskcytidld0"]
+[gd_scene load_steps=12 format=3 uid="uid://cciskcytidld0"]
 
+[ext_resource type="Script" path="res://managers/options_manager.gd" id="1_0thf3"]
 [ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://ui/main_menu.tres" id="1_cp37v"]
-[ext_resource type="Script" path="res://ui/options_menu.gd" id="1_p2xqu"]
+[ext_resource type="Shader" path="res://ui/main_menu.gdshader" id="1_s5fut"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybj22"]
+shader = ExtResource("1_s5fut")
+shader_parameter/blur = 2.5
+shader_parameter/brightness = 0.9
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y8k0a"]
 shader = ExtResource("1_cp37v")
@@ -41,12 +47,14 @@ events = [SubResource("InputEventAction_v7nx7")]
 
 [node name="OptionsMenu" type="ColorRect"]
 process_mode = 3
+material = SubResource("ShaderMaterial_ybj22")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_p2xqu")
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_0thf3")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 material = SubResource("ShaderMaterial_y8k0a")
@@ -105,6 +113,7 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -114,3 +123,4 @@ shortcut = SubResource("Shortcut_reda2")
 text = "Back"
 
 [connection signal="toggled" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ToggleInvertY" to="." method="_on_invert_y_toggled"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

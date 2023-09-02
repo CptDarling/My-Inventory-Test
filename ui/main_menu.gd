@@ -9,6 +9,7 @@ class_name MainMenu extends ColorRect
 func _ready() -> void:
 	quit_button.pressed.connect(get_tree().quit)
 	resume_button.pressed.connect(unpause)
+	OptionsManager.visibility_changed.connect(_options_manager_visibility_changed)
 
 
 func unpause() -> void:
@@ -30,3 +31,17 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	print("Animation finished: ", anim_name)
 
+
+func _on_options_button_pressed() -> void:
+	OptionsManager.show()
+	hide()
+
+
+## We are the main menu.
+## The Options Manager will emit the visibility_changed signal when it is
+## shown or hidden. If it was just hidden and we are active then we need to
+## be seen again. This is because we were hidden whilst the options manager
+## was visible.
+func _options_manager_visibility_changed() -> void:
+	if !OptionsManager.visible:
+		show()
