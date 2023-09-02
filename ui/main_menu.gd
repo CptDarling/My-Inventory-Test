@@ -24,14 +24,6 @@ func pause() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
-func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	print("Animation started: ", anim_name)
-
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	print("Animation finished: ", anim_name)
-
-
 func _on_options_button_pressed() -> void:
 	OptionsManager.show()
 	hide()
