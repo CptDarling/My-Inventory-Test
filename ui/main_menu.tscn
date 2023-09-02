@@ -288,7 +288,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_ulomf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2gcjx")
-shortcut = SubResource("Shortcut_j47fr")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
