@@ -9,6 +9,8 @@ signal reset_player_transform(original_transform: Transform3D)
 func _ready() -> void:
 	camera = camera_3d
 	GameManager.player = self
+	GameManager.config_changed.connect(load_config)
+	load_config()
 
 
 func reset_player() -> void:

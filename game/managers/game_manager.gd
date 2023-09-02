@@ -1,8 +1,12 @@
+#class_name GameManager
 extends Node
 
 var player: Player
 
 @onready var main_menu: MainMenu = %MainMenu
+@onready var options_menu: OptionsMenu = %OptionsMenu
+
+signal config_changed
 
 func _ready() -> void:
 	main_menu.pause()
@@ -17,9 +21,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			player.reset_player()
 
 
-func show_main_menu() -> void:
+func _on_main_menu_options_requested() -> void:
+	options_menu.show()
+
+
+func _on_options_menu_options_menu_closed() -> void:
 	main_menu.show()
 
 
-func _on_main_menu_options_requested() -> void:
-	OptionsManager.show()
+func _on_options_menu_config_changed() -> void:
+	config_changed.emit()
