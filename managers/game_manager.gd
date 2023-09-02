@@ -1,5 +1,7 @@
 extends Node
 
+var player: Player
+
 @onready var main_menu: MainMenu = %MainMenu
 
 func _ready() -> void:
@@ -9,6 +11,10 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		main_menu.pause()
+
+	if event.is_action_pressed("reset_player"):
+		if player:
+			player.reset_player()
 
 
 func show_main_menu() -> void:
