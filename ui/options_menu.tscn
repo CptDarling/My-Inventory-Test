@@ -40,6 +40,7 @@ pressed = true
 events = [SubResource("InputEventAction_v7nx7")]
 
 [node name="OptionsMenu" type="ColorRect"]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
