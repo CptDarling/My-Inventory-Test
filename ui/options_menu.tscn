@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://ndcri0g1s6e8"]
 
-[ext_resource type="Shader" path="res://ui/blur_shader.gdshader" id="1_8oval"]
+[ext_resource type="Shader" path="res://shaders/blur_shader.gdshader" id="1_8oval"]
 [ext_resource type="Script" path="res://ui/options_menu.gd" id="2_lkdwa"]
-[ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://ui/main_menu.tres" id="2_v0mni"]
+[ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://shaders/main_menu.tres" id="2_v0mni"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ybj22"]
 shader = ExtResource("1_8oval")
