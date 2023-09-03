@@ -1,32 +1,56 @@
-class_name Config
+extends Node
 
-const FILE_NAME = "config.cfg"
-const FILE_PATH = "user://" + FILE_NAME
+var config: ConfigFile
 
-const CFG_MOUSE_INVERT_Y = "invert_y"
+const CONFIG_FILEPATH = "user://config.cfg"
 
-static func set_config(config:Dictionary):
-	print("File write: set_config()")
-	var file = FileAccess.open(FILE_PATH, FileAccess.WRITE)
-	var content = JSON.stringify(config, "\t")
-	file.store_string(content)
+var Sections: Dictionary = {"INPUT": "input"}
+var Keys: Dictionary = {"INVERT_Y": "invert_y"}
 
+enum Section {
+	INPUT
+}
 
-static func get_config() -> Dictionary:
-	print("File read: get_config()")
-	if FileAccess.file_exists(FILE_PATH):
-		var file = FileAccess.open(FILE_PATH, FileAccess.READ)
-		var content = file.get_as_text()
-		var config:Dictionary = str_to_var(content)
-		if config: return config
-	return {}
+enum Key {
+	INVERT_Y
+}
+
+func _ready() -> void:
+	_load_config()
 
 
-static func get_value(key:String, default:Variant) -> Variant:
-	return get_config().get(key, default)
+func _load_config() -> void:
+	config = ConfigFile.new()
+	var err = config.load(CONFIG_FILEPATH)
+	if err != OK:
+		_load_default_settings()
+		_save_config()
+
+	for section in config.get_sections():
+		for key in config.get_section_keys(section):
+			var value = config.get_value(section, key)
 
 
-static func set_value(key:String, val:Variant) -> void:
-	var config = get_config()
-	config[key] = val
-	set_config(config)
+func get_input(key: int, default: Variant) -> Variant:
+	return _get_value(Section.INPUT, key, default)
+
+
+func set_input(key: int, value: Variant) -> void:
+	_set_value(Section.INPUT, key, value)
+
+
+func _load_default_settings() -> void:
+	set_input(Key.INVERT_Y, false)
+
+
+func _save_config() -> void:
+	config.save(CONFIG_FILEPATH)
+
+
+func _set_value(section: int, key: int, value) -> void:
+	config.set_value(Sections[Section.keys()[section]], Keys[Key.keys()[key]], value)
+	_save_config()
+
+
+func _get_value(section: int, key: int, default: Variant = null) -> Variant:
+	return config.get_value(Sections[Section.keys()[section]], Keys[Key.keys()[key]], default)
