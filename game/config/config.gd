@@ -6,12 +6,14 @@ const FILE_PATH = "user://" + FILE_NAME
 const CFG_MOUSE_INVERT_Y = "invert_y"
 
 static func set_config(config:Dictionary):
+	print("File write: set_config()")
 	var file = FileAccess.open(FILE_PATH, FileAccess.WRITE)
 	var content = var_to_str(config)
 	file.store_string(content)
 
 
 static func get_config() -> Dictionary:
+	print("File read: get_config()")
 	if FileAccess.file_exists(FILE_PATH):
 		var file = FileAccess.open(FILE_PATH, FileAccess.READ)
 		var content = file.get_as_text()
