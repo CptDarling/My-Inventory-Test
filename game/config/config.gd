@@ -8,7 +8,7 @@ const CFG_MOUSE_INVERT_Y = "invert_y"
 static func set_config(config:Dictionary):
 	print("File write: set_config()")
 	var file = FileAccess.open(FILE_PATH, FileAccess.WRITE)
-	var content = var_to_str(config)
+	var content = JSON.stringify(config, "\t")
 	file.store_string(content)
 
 
