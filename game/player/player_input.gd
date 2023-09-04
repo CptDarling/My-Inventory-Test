@@ -15,8 +15,9 @@ func _ready() -> void:
 ## Use for mouse events.
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * .005)
-		camera.rotate_x(remap(Config.get_input(Config.Key.INVERT_Y, false) , 1, 0, -1, 1) * -event.relative.y * .005)
+		var sensitivity = Config.get_input(Config.Key.SENSITIVITY, .005)
+		rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_x(remap(Config.get_input(Config.Key.INVERT_Y, false) , 1, 0, -1, 1) * -event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/4, PI/4)
 
 

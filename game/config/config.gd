@@ -4,19 +4,18 @@ var config: ConfigFile
 
 const CONFIG_FILEPATH = "user://config.cfg"
 
-var Sections: Dictionary = {"INPUT": "input"}
-var Keys: Dictionary = {"INVERT_Y": "invert_y"}
-
 enum Section {
-	INPUT
+	INPUT,
 }
 
 enum Key {
-	INVERT_Y
+	INVERT_Y,
+	SENSITIVITY,
 }
 
 func _ready() -> void:
 	_load_config()
+	_load_default_settings()
 
 
 func _load_config() -> void:
@@ -31,6 +30,16 @@ func _load_config() -> void:
 			var value = config.get_value(section, key)
 
 
+func section_to_str(value: int) -> String:
+	var resp: String = Section.keys()[value]
+	return resp.to_lower()
+
+
+func key_to_str(value: int) -> String:
+	var resp: String = Key.keys()[value]
+	return resp.to_lower()
+
+
 func get_input(key: int, default: Variant) -> Variant:
 	return _get_value(Section.INPUT, key, default)
 
@@ -40,7 +49,10 @@ func set_input(key: int, value: Variant) -> void:
 
 
 func _load_default_settings() -> void:
-	set_input(Key.INVERT_Y, false)
+	if !config.has_section_key(section_to_str(Section.INPUT), key_to_str(Key.INVERT_Y)):
+		set_input(Key.INVERT_Y, false)
+	if !config.has_section_key(section_to_str(Section.INPUT), key_to_str(Key.SENSITIVITY)):
+		set_input(Key.SENSITIVITY, 0.005)
 
 
 func _save_config() -> void:
@@ -48,9 +60,9 @@ func _save_config() -> void:
 
 
 func _set_value(section: int, key: int, value) -> void:
-	config.set_value(Sections[Section.keys()[section]], Keys[Key.keys()[key]], value)
+	config.set_value(section_to_str(section), key_to_str(key), value)
 	_save_config()
 
 
 func _get_value(section: int, key: int, default: Variant = null) -> Variant:
-	return config.get_value(Sections[Section.keys()[section]], Keys[Key.keys()[key]], default)
+	return config.get_value(section_to_str(section), key_to_str(key), default)
