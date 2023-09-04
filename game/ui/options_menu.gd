@@ -1,9 +1,14 @@
 class_name OptionsMenu extends ColorRect
 
-@onready var toggle_invert_y: CheckButton = %ToggleInvertY
-@onready var back_button: Button = %BackButton
-
 signal options_menu_closed
+signal invert_y_changed(value: bool)
+signal sensitivity_changed(value: float)
+
+@onready var toggle_invert_y: CheckButton = %ToggleInvertY
+@onready var sensitivity: HSlider = %Sensitivity
+@onready var sensitivity_label: Label = %SensitivityLabel
+
+@onready var back_button: Button = %BackButton
 
 var _is_ready: bool = false
 
@@ -16,9 +21,13 @@ func _ready() -> void:
 func _update_ui() -> void:
 	toggle_invert_y.set_pressed_no_signal(Config.get_input(Config.Key.INVERT_Y, false))
 
+	# Map GUI slider range 1 to 10 to the float value range 0.001 to 0.01
+	var mapped_value: float = remap(Config.get_input(Config.Key.SENSITIVITY, 0.005), 0.001, 0.01, sensitivity.min_value, sensitivity.max_value)
+	sensitivity.value = mapped_value
+
 
 func _on_invert_y_toggled(button_pressed: bool) -> void:
-	Config.set_input(Config.Key.INVERT_Y, button_pressed)
+	invert_y_changed.emit(button_pressed)
 
 
 func _on_back_button_pressed() -> void:
@@ -29,3 +38,18 @@ func _on_back_button_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible and _is_ready:
 		_update_ui()
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	# consider adding a debouncing timer so the control is polled much less frequently.
+	_set_sensitivity(value)
+
+
+func _set_sensitivity(value: float) -> void:
+
+	# Map GUI slider range 1 to 10 to the float value range 0.001 to 0.01
+	var mapped_value: float = remap(value, sensitivity.min_value, sensitivity.max_value, 0.001, 0.01)
+	sensitivity_changed.emit(mapped_value)
+
+	# Set the sensitivity label with a number.
+	sensitivity_label.text = String.num(value)

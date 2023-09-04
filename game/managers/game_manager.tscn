@@ -16,5 +16,6 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="options_requested" from="MainMenu" to="." method="_on_main_menu_options_requested"]
-[connection signal="config_changed" from="OptionsMenu" to="." method="_on_options_menu_config_changed"]
+[connection signal="invert_y_changed" from="OptionsMenu" to="." method="_on_options_menu_invert_y_changed"]
 [connection signal="options_menu_closed" from="OptionsMenu" to="." method="_on_options_menu_options_menu_closed"]
+[connection signal="sensitivity_changed" from="OptionsMenu" to="." method="_on_options_menu_sensitivity_changed"]

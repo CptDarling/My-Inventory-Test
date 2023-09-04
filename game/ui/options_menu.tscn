@@ -92,36 +92,66 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Mouse Control"
 
-[node name="ToggleInvertY" type="CheckButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ToggleInvertY"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 26.0
-text = "Invert Y"
-
-[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 32
 columns = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Invert Y"
+
+[node name="ToggleInvertY" type="CheckButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Sensitivity"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Sensitivity" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[node name="SensitivityLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
 
 [node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_7mh7d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_130ic")
 shortcut = SubResource("Shortcut_reda2")
 text = "Back"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="toggled" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ToggleInvertY" to="." method="_on_invert_y_toggled"]
+[connection signal="toggled" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer/ToggleInvertY" to="." method="_on_invert_y_toggled"]
+[connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/GridContainer/HBoxContainer/Sensitivity" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

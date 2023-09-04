@@ -25,10 +25,6 @@ func _load_config() -> void:
 		_load_default_settings()
 		_save_config()
 
-	for section in config.get_sections():
-		for key in config.get_section_keys(section):
-			var value = config.get_value(section, key)
-
 
 func section_to_str(value: int) -> String:
 	var resp: String = Section.keys()[value]

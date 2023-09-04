@@ -6,8 +6,6 @@ var player: Player
 @onready var main_menu: MainMenu = %MainMenu
 @onready var options_menu: OptionsMenu = %OptionsMenu
 
-signal config_changed
-
 func _ready() -> void:
 	main_menu.pause()
 
@@ -29,5 +27,9 @@ func _on_options_menu_options_menu_closed() -> void:
 	main_menu.show()
 
 
-func _on_options_menu_config_changed() -> void:
-	config_changed.emit()
+func _on_options_menu_invert_y_changed(value) -> void:
+	Config.set_input(Config.Key.INVERT_Y, value)
+
+
+func _on_options_menu_sensitivity_changed(value) -> void:
+	Config.set_input(Config.Key.SENSITIVITY, value)
