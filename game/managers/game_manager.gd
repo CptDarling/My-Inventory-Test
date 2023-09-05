@@ -43,4 +43,3 @@ func _on_options_menu_sensitivity_changed(value) -> void:
 func _on_options_menu_ui_fps_changed(value):
 	Config.set_ui(Config.Key.FPS, value)
 	fps_changed.emit(value)
-	

@@ -13,8 +13,8 @@ var fps_visible: bool = false:
 
 func _ready():
 	GameManager.fps_changed.connect(_on_fps_changed)
-	
-	
+
+
 func _on_fps_changed(value: bool) -> void:
 	fps_visible = value
-	
+

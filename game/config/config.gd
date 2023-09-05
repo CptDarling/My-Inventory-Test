@@ -67,13 +67,13 @@ func _get_value(section: int, key: int, default: Variant = null) -> Variant:
 
 
 func _load_default_settings() -> void:
-	
+
 	# Input section defaults
 	if !config.has_section_key(section_to_str(Section.INPUT), key_to_str(Key.INVERT_Y)):
 		set_input(Key.INVERT_Y, false)
 	if !config.has_section_key(section_to_str(Section.INPUT), key_to_str(Key.SENSITIVITY)):
 		set_input(Key.SENSITIVITY, 0.005)
-	
-	# UI section defaults	
+
+	# UI section defaults
 	if !config.has_section_key(section_to_str(Section.UI), key_to_str(Key.FPS)):
 		set_ui(Key.FPS, false)

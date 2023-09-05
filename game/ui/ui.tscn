@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3rstepwk05hw"]
+[gd_scene load_steps=3 format=3 uid="uid://bjsspmha1yi4o"]
 
 [ext_resource type="PackedScene" uid="uid://blt8g58xxjmv2" path="res://game/ui/tools/fps_meter.tscn" id="1_5ljuy"]
 [ext_resource type="Script" path="res://game/ui/ui.gd" id="1_68pc1"]

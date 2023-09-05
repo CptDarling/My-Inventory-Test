@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/managers/game_manager.gd" id="1_blm47"]
 [ext_resource type="PackedScene" uid="uid://be70bv2ilur7o" path="res://game/ui/main_menu.tscn" id="2_3u8gf"]
 [ext_resource type="PackedScene" uid="uid://ndcri0g1s6e8" path="res://game/ui/options_menu.tscn" id="3_efpwl"]
-[ext_resource type="PackedScene" uid="uid://d3rstepwk05hw" path="res://game/ui/ui.tscn" id="4_bilto"]
+[ext_resource type="PackedScene" path="res://game/ui/ui.tscn" id="4_bilto"]
 
 [node name="game_manager" type="Node"]
 process_mode = 3
