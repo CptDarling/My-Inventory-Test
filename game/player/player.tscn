@@ -19,5 +19,17 @@ mesh = SubResource("CapsuleMesh_oj8vp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_qjrf0")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="PlayerCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+current = true
+
+[node name="CameraMount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="CameraPivot" type="Node3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="OverheadCamera" type="Camera3D" parent="CameraMount/CameraPivot"]
+projection = 1
+size = 10.0

@@ -1,13 +1,13 @@
 class_name Player extends PlayerInput
 
-@onready var camera_3d: Camera3D = $Camera3D
+@onready var player_camera = %PlayerCamera
 
 var original_transform = self.transform
 
 signal reset_player_transform(original_transform: Transform3D)
 
 func _ready() -> void:
-	camera = camera_3d
+	camera = player_camera
 	GameManager.player = self
 
 
