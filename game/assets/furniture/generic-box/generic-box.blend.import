@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c2x7gow2oasu3"
-path="res://.godot/imported/generic-box.blend-fcb17b96dcda77ce73a7768ed8e75c0f.scn"
+path="res://.godot/imported/generic-box.blend-8bfa49b6484fd8621ee1b12d264b7df9.scn"
 
 [deps]
 
-source_file="res://game/assets/furniture/generic-box.blend"
-dest_files=["res://.godot/imported/generic-box.blend-fcb17b96dcda77ce73a7768ed8e75c0f.scn"]
+source_file="res://game/assets/furniture/generic-box/generic-box.blend"
+dest_files=["res://.godot/imported/generic-box.blend-8bfa49b6484fd8621ee1b12d264b7df9.scn"]
 
 [params]
 
