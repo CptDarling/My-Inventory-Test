@@ -1,6 +1,8 @@
 #class_name GameManager
 extends Node
 
+signal fps_changed(value: bool)
+
 var player: Player
 
 @onready var main_menu: MainMenu = %MainMenu
@@ -8,6 +10,9 @@ var player: Player
 
 func _ready() -> void:
 	main_menu.pause()
+
+	# Setup elements of the UI
+	fps_changed.emit(Config.get_ui(Config.Key.FPS, false))
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -33,3 +38,9 @@ func _on_options_menu_invert_y_changed(value) -> void:
 
 func _on_options_menu_sensitivity_changed(value) -> void:
 	Config.set_input(Config.Key.SENSITIVITY, value)
+
+
+func _on_options_menu_ui_fps_changed(value):
+	Config.set_ui(Config.Key.FPS, value)
+	fps_changed.emit(value)
+	

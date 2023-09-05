@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b80ec0b1xawm1"]
+[gd_scene load_steps=5 format=3 uid="uid://b80ec0b1xawm1"]
 
 [ext_resource type="Script" path="res://game/managers/game_manager.gd" id="1_blm47"]
 [ext_resource type="PackedScene" uid="uid://be70bv2ilur7o" path="res://game/ui/main_menu.tscn" id="2_3u8gf"]
 [ext_resource type="PackedScene" uid="uid://ndcri0g1s6e8" path="res://game/ui/options_menu.tscn" id="3_efpwl"]
+[ext_resource type="PackedScene" uid="uid://d3rstepwk05hw" path="res://game/ui/ui.tscn" id="4_bilto"]
 
 [node name="game_manager" type="Node"]
 process_mode = 3
 script = ExtResource("1_blm47")
+
+[node name="UI" parent="." instance=ExtResource("4_bilto")]
 
 [node name="MainMenu" parent="." instance=ExtResource("2_3u8gf")]
 unique_name_in_owner = true
@@ -19,3 +22,4 @@ visible = false
 [connection signal="invert_y_changed" from="OptionsMenu" to="." method="_on_options_menu_invert_y_changed"]
 [connection signal="options_menu_closed" from="OptionsMenu" to="." method="_on_options_menu_options_menu_closed"]
 [connection signal="sensitivity_changed" from="OptionsMenu" to="." method="_on_options_menu_sensitivity_changed"]
+[connection signal="ui_fps_changed" from="OptionsMenu" to="." method="_on_options_menu_ui_fps_changed"]
