@@ -19,3 +19,5 @@ builds/
 
 # Blender ignores
 *.blend1
+
+addons/*
