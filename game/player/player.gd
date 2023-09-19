@@ -3,6 +3,9 @@ class_name Player extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+## Set to allow the player to perform a double jump.
+@export var can_double_jump:bool = false
+
 @onready var player_camera: Camera3D = %PlayerCamera
 @onready var orbit_camera: Camera3D = %OrbitCamera
 @onready var nose: MeshInstance3D = %Nose
@@ -18,6 +21,7 @@ var original_transform = self.transform
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var selected_camera: camera_selector = camera_selector.CAMERA_FIRST_PERSON
+var double_jump: bool = false
 
 signal reset_player_transform(original_transform: Transform3D)
 
@@ -49,6 +53,12 @@ func _physics_process(delta: float) -> void:
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("move_jump") and (is_on_floor() or double_jump):
+		if can_double_jump:
+			if is_on_floor():
+				double_jump = true
+			else:
+				double_jump = false
+
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.

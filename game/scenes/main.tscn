@@ -11,5 +11,6 @@ script = ExtResource("1_7po14")
 
 [node name="Player" parent="." instance=ExtResource("3_g843c")]
 unique_name_in_owner = true
+can_double_jump = true
 
 [connection signal="reset_player_transform" from="Player" to="." method="_on_player_reset_player_transform"]
