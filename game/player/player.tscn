@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbgcn62jkra0e"]
+[gd_scene load_steps=6 format=3 uid="uid://dbgcn62jkra0e"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_e6obp"]
+[ext_resource type="Script" path="res://game/player/OrbitCamera.gd" id="2_cmy2r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oj8vp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_csk0o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qjrf0"]
 
@@ -10,10 +13,18 @@
 collision_layer = 2
 script = ExtResource("1_e6obp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_oj8vp")
+skeleton = NodePath("../..")
+
+[node name="Nose" type="MeshInstance3D" parent="Visuals"]
+unique_name_in_owner = true
+transform = Transform3D(0.201361, 0, 0, 0, -8.80178e-09, -0.201361, 0, 0.201361, -8.80178e-09, 0, 1.89365, -0.31069)
+mesh = SubResource("CylinderMesh_csk0o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -33,3 +44,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 [node name="OverheadCamera" type="Camera3D" parent="CameraMount/CameraPivot"]
 projection = 1
 size = 10.0
+
+[node name="OrbitCameraPivot" type="Node3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.28901, 7.81804)
+
+[node name="OrbitCamera" type="Camera3D" parent="CameraMount/OrbitCameraPivot"]
+unique_name_in_owner = true
+size = 10.0
+script = ExtResource("2_cmy2r")

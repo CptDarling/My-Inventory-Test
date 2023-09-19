@@ -4,11 +4,20 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var player_camera: Camera3D = %PlayerCamera
-@onready var player_camera = %PlayerCamera
+@onready var orbit_camera: Camera3D = %OrbitCamera
+@onready var nose: MeshInstance3D = %Nose
+
+enum camera_selector {
+	CAMERA_FIRST_PERSON,
+	CAMERA_THIRD_PERSON,
+}
+
+var active_camera: Camera3D
 
 var original_transform = self.transform
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var selected_camera: camera_selector = camera_selector.CAMERA_FIRST_PERSON
 
 signal reset_player_transform(original_transform: Transform3D)
 
@@ -16,6 +25,7 @@ signal reset_player_transform(original_transform: Transform3D)
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameManager.player = self
+	set_camera(camera_selector.CAMERA_FIRST_PERSON)
 
 
 ## Use for mouse events.
@@ -28,6 +38,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+
+	# select first or third person camera
+	if Input.is_action_just_pressed("camera_toggle"):
+		toggle_camera()
 
 	# Add the gravity.
 	if not is_on_floor():
@@ -54,3 +68,24 @@ func _physics_process(delta: float) -> void:
 func reset_player() -> void:
 	print("player transform reset requested")
 	reset_player_transform.emit(original_transform)
+
+
+func set_camera(camera: camera_selector) -> void:
+	match camera:
+		camera_selector.CAMERA_FIRST_PERSON:
+			active_camera = player_camera
+			active_camera.current = true
+			nose.hide()
+		camera_selector.CAMERA_THIRD_PERSON:
+			active_camera = orbit_camera
+			active_camera.current = true
+			nose.show()
+		_:
+			set_camera(camera_selector.CAMERA_FIRST_PERSON)
+
+
+func toggle_camera() -> void:
+	if active_camera == player_camera:
+		set_camera(camera_selector.CAMERA_THIRD_PERSON)
+	else:
+		set_camera(camera_selector.CAMERA_FIRST_PERSON)
