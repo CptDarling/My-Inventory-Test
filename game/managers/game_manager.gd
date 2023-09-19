@@ -9,7 +9,7 @@ var player: Player
 @onready var options_menu: OptionsMenu = %OptionsMenu
 
 func _ready() -> void:
-	main_menu.pause()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	# Setup elements of the UI
 	fps_changed.emit(Config.get_ui(Config.Key.FPS, false))
