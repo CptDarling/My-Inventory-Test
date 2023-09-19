@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://42b6g64sqsfo"]
+[gd_scene load_steps=8 format=3 uid="uid://42b6g64sqsfo"]
 
+[ext_resource type="Material" uid="uid://dpp57swui8pgg" path="res://game/materials/ground_mat.tres" id="1_pgeoe"]
 [ext_resource type="PackedScene" path="res://game/scenes/metal_box.tscn" id="1_si78x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8xm4u"]
@@ -32,6 +33,7 @@ light_color = Color(1, 1, 0.752941, 1)
 shadow_enabled = true
 
 [node name="Ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_pgeoe")
 mesh = SubResource("PlaneMesh_xffmr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
