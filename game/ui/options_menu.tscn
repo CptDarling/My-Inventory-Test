@@ -1,18 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://ndcri0g1s6e8"]
+[gd_scene load_steps=10 format=3 uid="uid://ndcri0g1s6e8"]
 
 [ext_resource type="Shader" path="res://game/shaders/blur_shader.gdshader" id="1_8oval"]
 [ext_resource type="Script" path="res://game/ui/options_menu.gd" id="2_lkdwa"]
-[ext_resource type="Shader" uid="uid://bcafhnmnjj468" path="res://game/shaders/main_menu.tres" id="2_v0mni"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybj22"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftyil"]
 shader = ExtResource("1_8oval")
 shader_parameter/blur = 2.5
-shader_parameter/brightness = 0.9
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8k0a"]
-shader = ExtResource("2_v0mni")
-shader_parameter/brightness = null
-shader_parameter/blur = 0.0
+shader_parameter/brightness = 1.0
+shader_parameter/modulate = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov6d6"]
 bg_color = Color(0.156863, 0.156863, 0.156863, 1)
@@ -47,7 +42,8 @@ events = [SubResource("InputEventAction_v7nx7")]
 
 [node name="OptionsMenu" type="ColorRect"]
 process_mode = 3
-material = SubResource("ShaderMaterial_ybj22")
+visible = false
+material = SubResource("ShaderMaterial_ftyil")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -57,7 +53,6 @@ color = Color(1, 1, 1, 0)
 script = ExtResource("2_lkdwa")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-material = SubResource("ShaderMaterial_y8k0a")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
