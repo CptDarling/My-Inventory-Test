@@ -72,8 +72,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()
-
+	# move and detect collision
+	if move_and_slide():
+		for index in get_slide_collision_count():
+			var collision: KinematicCollision3D = get_slide_collision(index)
+			if collision.get_collider().is_in_group("Interactable"):
+				print(collision.get_collider().name)
+				Input.start_joy_vibration(0, 1, 0, 0.1)
 
 func reset_player() -> void:
 	print("player transform reset requested")
